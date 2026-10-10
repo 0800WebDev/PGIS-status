@@ -86,7 +86,16 @@ async function checkSite(link, site) {
     }
 
     const keywords = [
-        "sdbkjfbg<slgilfsvgyfgdrligriu",
+        "this deployment is temporarily paused",
+        "deployment is temporarily paused",
+        "application error",
+        "internal server error",
+        "bad gateway",
+        "service unavailable",
+        "site not found",
+        "page not found",
+        "deployment not found",
+        "project not found"
 
     ];
 
