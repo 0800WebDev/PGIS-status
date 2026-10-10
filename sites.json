@@ -4,8 +4,22 @@
       "name": "PGIS 3",
       "links": [
         {
-          "url": "https://pgis3.vercel.app",
-          "note": "down because of vercel usage"
+          "url": "https://pgis3.vercel.app"
+        },
+        {
+          "url": "https://test-v3.appwrite.network"
+        },
+        {
+          "url": "http://math.port0.org"
+        },
+        {
+          "url": "https://homework555.netlify.app"
+        },
+        {
+          "url": "https://math.bumon.ar"
+        },
+        {
+          "url": "https://edu.meridiano.com.br"
         }
       ]
     },
@@ -16,11 +30,55 @@
           "url": "https://zinc-browser.vercel.app"
         },
         {
-          "url": "https://zinc-proxy.vercel.app",
-          "note": "Proxy mirror"
-        }
+          "url": "https://zinc-proxy.vercel.app"
+        },
+        {
+          "url": "https://zinc.math.bumon.ar"
+        },
+        {
+          "url": "https://zinc.chemistry.bumon.ar"
+        },
+        {
+          "url": "https://zinc.happy0.co.uk"
+        },
+        {
+          "url": "https://learn.meridiano.com.br"
+        },
+        
       ],
-      "note": "down because of vercel usage"
+    },
+    {
+      "name": "PGIS wisp",
+      "links": [
+        {
+          "url": "https://pgis-wisp.joytree.site"
+        },
+        {
+          "url": "https://pgis-wisp.onrender.com"
+        },
+        {
+          "url": "https://pgis-wisp-2.onrender.com"
+        },
+        {
+          "url": "https://pgis-wisp-3.onrender.com"
+        },
+        {
+          "url": "https://pgis-wisp-4.onrender.com"
+        },
+        {
+          "url": "https://pgis-wisp.bonto.run"
+        },
+        {
+          "url": "https://pgis-wisp.getvoroa.com"
+        },
+        {
+          "url": "https://us.cloud.enzonic.com:25847"
+        },
+        {
+          "url": "https://78.154.103.49:11376"
+        },
+        
+      ],
     }
   ]
 }
