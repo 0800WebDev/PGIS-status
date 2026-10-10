@@ -24,8 +24,9 @@ async function loadSites() {
                 const nameElement = document.createElement("span");
                 nameElement.className = "site-name";
                 nameElement.textContent = site.name;
-
+                
                 const statusElement = document.createElement("span");
+                
                 statusElement.className = `site-status ${
                     result.up === true
                     ? "status-up"
@@ -33,6 +34,11 @@ async function loadSites() {
                     ? "status-down"
                     : "status-unknown"
                 }`;
+
+statusElement.textContent =
+    result.up === true ? "Up" :
+    result.up === false ? "Down" :
+    "Unknown";
 
 statusElement.textContent =
     result.up === true ? "Up" :
@@ -85,59 +91,94 @@ async function checkSite(link, site) {
         "project not found"
     ];
 
+    const checkUrl = new URL(link.url, window.location.href);
+
+    if (checkUrl.protocol === "http:" && location.protocol === "https:") {
+        return {
+            up: null,
+            reason: "HTTP blocked by HTTPS page"
+        };
+    }
+
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 10000);
 
     try {
-        const response = await fetch(link.url, {
-            method: "GET",
-            cache: "no-store",
-            signal: controller.signal
-        });
-
-        if (!response.ok) {
-            return {
-                up: false,
-                reason: `HTTP ${response.status}`
-            };
-        }
-
-        const content = (await response.text()).toLowerCase();
-
-        const matchedKeyword = keywords.find(keyword =>
-            content.includes(keyword)
-        );
-
-        return {
-            up: !matchedKeyword,
-            reason: matchedKeyword || null
-        };
-
-    } catch (error) {
-        if (error.name === "AbortError") {
-            return {
-                up: false,
-                reason: "Timeout"
-            };
-        }
-
         try {
-            await fetch(link.url, {
+            const response = await fetch(checkUrl.href, {
+                method: "GET",
+                mode: "cors",
+                cache: "no-store",
+                signal: controller.signal
+            });
+
+            if (!response.ok) {
+                return {
+                    up: false,
+                    reason: `HTTP ${response.status}`
+                };
+            }
+
+            try {
+                const content = (await response.text()).toLowerCase();
+
+                const matchedKeyword = keywords.find(keyword =>
+                    content.includes(keyword)
+                );
+
+                if (matchedKeyword) {
+                    return {
+                        up: false,
+                        reason: matchedKeyword
+                    };
+                }
+            } catch {
+                return {
+                    up: true,
+                    reason: null
+                };
+            }
+
+            return {
+                up: true,
+                reason: null
+            };
+
+        } catch (error) {
+            if (controller.signal.aborted) {
+                return {
+                    up: null,
+                    reason: "Timeout"
+                };
+            }
+
+            const response = await fetch(checkUrl.href, {
+                method: "GET",
                 mode: "no-cors",
                 cache: "no-store",
                 signal: controller.signal
             });
 
+            if (response.type === "opaque") {
+                return {
+                    up: true,
+                    reason: "Unverified (CORS restricted)"
+                };
+            }
+
             return {
                 up: null,
-                reason: "Status unknown (CORS restricted)"
-            };
-        } catch {
-            return {
-                up: null,
-                reason: "Could not verify status"
+                reason: "Unable to verify"
             };
         }
+
+    } catch (error) {
+        return {
+            up: null,
+            reason: controller.signal.aborted
+                ? "Timeout"
+                : "Connection failed or blocked"
+        };
     } finally {
         clearTimeout(timeout);
     }
