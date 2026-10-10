@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap');
+
+body {
+  background-color: black;
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+h1 {
+    font-family: 'Sora', sans-serif;
+    text-shadow:
+    0 0 10px rgba(255,255,255,0.3),
+    0 0 30px rgba(255,255,255,0.15);
+    animation: float 4s ease-in-out infinite;
+
+     background:
+    linear-gradient(
+      115deg,
+      #4a4a4a 0%,
+      #ffffff 10%,
+      #7a7a7a 18%,
+      #f5f5f5 25%,
+      #8c8c8c 32%,
+      #ffffff 40%,
+      #5e5e5e 50%,
+      #ffffff 60%,
+      #9a9a9a 68%,
+      #f0f0f0 76%,
+      #6e6e6e 85%,
+      #ffffff 100%
+    );
+
+  background-size: 300% auto;
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  background-size: 200% 200%;
+animation: chrome 20s ease-in-out infinite alternate;
+
+    filter: contrast(1.15) brightness(1.1);
+  }
+
+@keyframes chrome {
+  from {
+    background-position: 0% 50%;
+  }
+
+  to {
+    background-position: 100% 50%;
+  }
+}
+  
+
+
+.link-status {
+display: grid;
+grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 0.6fr);
+align-items: center;
+gap: 20px;
+}
+
+.site-note {
+  display: none;
+}
+
+#sites {
+  text-align: left;
+  border: none;
+}
+#site-statuses {
+  text-align: left;
+}
+
+.box {
+  width: 90vw;
+  margin: 0 auto;
+  padding: 15px;
+  box-sizing: border-box;
+  border: grey solid 1px;
+  border-radius: 3px; 
+  background: transparent;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+
+}
+
+.small-box {
+position: relative;
+  flex: 0 1 100px;
+  min-width: 0;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  box-sizing: border-box;
+  border: grey solid 1px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  transition: transform 0.15s ease-out;
+  transform: perspective(1000px) rotateX(0) rotateY(0);
+  transform-style: preserve-3d;
+  box-shadow: 0 5px 20px rgba(255, 255, 255, 0.05);
+}
+
+.small-box:hover {
+  transform: perspective(1000px) rotateX(5deg) rotateY(-5deg) scale(1.03);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.12);
+}
+
+.small-box h4 {
+  position: relative;
+  bottom: 60%;
+     -webkit-text-stroke: 0.01px black;
+    text-shadow:
+        -1px -1px 0 black,
+         1px -1px 0 black,
+        -1px  1px 0 black,
+         1px  1px 0 black,
+         0   -1px 0 black,
+         0    1px 0 black,
+        -1px  0   0 black,
+         1px  0   0 black;
+position: absolute;
+bottom: 5%;
+left: 0;
+right: 0;
+margin: 0;
+font-size: clamp(10px, 4vw, 20px);
+}
+
+img {
+  height: 100%;
+  width: 100%;
+}
+
+.status-up {
+  color: green;
+}
+
+.status-down {
+  color: red;
+}
+
+#particles-js{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index: -1 !important;
+pointer-events:none;
+background: transparent;
+}
+.particles-js-canvas-el {
+  z-index: -1 !important;
+}
+
+#select-site {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: clamp(6px, 2vw, 20px);
+  padding: clamp(8px, 3vw, 30px);
+}
+
+#select-site h3 {
+  flex: 0 0 100%;
+  margin: 0;
+}
