@@ -1,0 +1,26 @@
+{
+  "sites": [
+    {
+      "name": "PGIS 3",
+      "links": [
+        {
+          "url": "https://pgis3.vercel.app",
+          "note": "down because of vercel usage"
+        }
+      ]
+    },
+    {
+      "name": "Zinc",
+      "links": [
+        {
+          "url": "https://zinc-browser.vercel.app"
+        },
+        {
+          "url": "https://zinc-proxy.vercel.app",
+          "note": "Proxy mirror"
+        }
+      ],
+      "note": "down because of vercel usage"
+    }
+  ]
+}
