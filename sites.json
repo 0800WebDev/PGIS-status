@@ -2,7 +2,7 @@
   "sites": [
     {
       "name": "PGIS 3",
-      "status": "down",
+      "status": "down"
       "links": [
         {
           "url": "https://pgis3.vercel.app"
@@ -11,12 +11,12 @@
           "url": "https://test-v3.appwrite.network"
         },
         {
-          "url": "http://math.port0.org"
-          "status": "up", 
+          "url": "http://math.port0.org",
+          "status": "up"
         },
         {
-          "url": "https://homework555.netlify.app"
-          "status": "up",
+          "url": "https://homework555.netlify.app",
+          "status": "up"
         },
         {
           "url": "https://math.bumon.ar"
@@ -28,7 +28,7 @@
     },
     {
       "name": "Zinc",
-      "status": "down",
+      "status": "down"
       "links": [
         {
           "url": "https://zinc-browser.vercel.app"
@@ -57,35 +57,35 @@
           "url": "https://pgis-wisp.joytree.site"
         },
         {
-          "url": "https://pgis-wisp.onrender.com"
-          "status": "down",
+          "url": "https://pgis-wisp.onrender.com",
+          "status": "down"
         },
         {
-          "url": "https://pgis-wisp-2.onrender.com"
-          "status": "down",
+          "url": "https://pgis-wisp-2.onrender.com",
+          "status": "down"
         },
         {
-          "url": "https://pgis-wisp-3.onrender.com"
-          "status": "down",
+          "url": "https://pgis-wisp-3.onrender.com",
+          "status": "down"
         },
         {
-          "url": "https://pgis-wisp-4.onrender.com"
-          "status": "down",
+          "url": "https://pgis-wisp-4.onrender.com",
+          "status": "down"
         },
         {
-          "url": "https://pgis-wisp.bonto.run"
-          "status": "down",
+          "url": "https://pgis-wisp.bonto.run",
+          "status": "down"
         },
         {
           "url": "https://pgis-wisp.getvoroa.com"
         },
         {
-          "url": "https://us.cloud.enzonic.com:25847"
-          "status": "down",
+          "url": "https://us.cloud.enzonic.com:25847",
+          "status": "down"
         },
         {
-          "url": "https://78.154.103.49:11376"
-          "status": "down",
+          "url": "https://78.154.103.49:11376",
+          "status": "down"
         }
       ]
     }
