@@ -2,7 +2,7 @@ async function loadSites() {
     const container = document.querySelector("#sites");
 
     try {
-        const response = await fetch("https://0800webdev.github.io/files/json/pgis-status-temp-test-file.json", {
+        const response = await fetch("sites.json", {
             cache: "no-store"
         });
 
