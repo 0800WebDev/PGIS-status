@@ -2,7 +2,7 @@
   "sites": [
     {
       "name": "PGIS 3",
-      "status": "down"
+      "status": "down",
       "links": [
         {
           "url": "https://pgis3.vercel.app"
@@ -28,7 +28,7 @@
     },
     {
       "name": "Zinc",
-      "status": "down"
+      "status": "down",
       "links": [
         {
           "url": "https://zinc-browser.vercel.app"
