@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+    <title>PGIS status</title>
+</head>
+<body>
+  <div id="particles-js"></div>
+  
+  <h1>PGIS Status</h1>
+<div class="box" id="select-site">
+ <h3>choose the site you want to view</h3>
+
+<div class="small-box">
+<img src="sites/pgis3.png">
+<h4>PGIS 3</h4>
+</div>
+<div class="small-box">
+<img src="sites/wisp.png">
+<h4>PGIS wisp</h4>
+</div>
+<div class="small-box">
+<img src="sites/zinc.png">
+<h4>Zinc</h4>
+</div>
+  
+  
+</div>
+  <br>
+<div class="box" id="site-statuses">
+  <span class="link-status">
+
+<span class="site-link">Link</span>
+<span class="site-name">Site</span>
+<span class="site-status">Status</span> 
+  </span>
+  <hr>
+<div id="sites">
+
+</div>
+</div>
+<br>
+<div class="box" id="request-site">
+<span>didn't find the site you where looking for?</span>  
+</div>
+  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+<script>
+function particlesStart() {
+particlesJS('particles-js',{
+"particles":{
+"number":{"value":100,"density":{"enable":true,"value_area":800}},
+"color":{"value":"#ffffff"},
+"shape":{"type":"circle"},
+"opacity":{"value":0.08,"random":true},
+"size":{"value":3,"random":true},
+"line_linked":{"enable":true,"distance":150,"color":"#ffffff","opacity":0.4,"width":1},
+"move":{"enable":true,"speed":1.5,"direction":"none","straight":false,"out_mode":"out"}
+},
+"interactivity":{
+"detect_on":"window",
+"events":{"onhover":{"enable":true,"mode":"repulse"},"onclick":{"enable":false}},
+"modes":{"repulse":{"distance":120,"duration":0.5}}
+},
+"retina_detect":true
+})
+}
+  particlesStart();
+  </script>
+</body>
+</html>
