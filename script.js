@@ -27,10 +27,17 @@ async function loadSites() {
 
                 const statusElement = document.createElement("span");
                 statusElement.className = `site-status ${
-                    result.up ? "status-up" : "status-down"
+                    result.up === true
+                    ? "status-up"
+                    : result.up === false
+                    ? "status-down"
+                    : "status-unknown"
                 }`;
 
-                statusElement.textContent = result.up ? "Up" : "Down";
+statusElement.textContent =
+    result.up === true ? "Up" :
+    result.up === false ? "Down" :
+    "Unknown";
 
                 element.appendChild(linkElement);
                 element.appendChild(nameElement);
@@ -57,66 +64,36 @@ async function loadSites() {
 }
 
 async function checkSite(link, site) {
-    if (link.status === "up") {
-        return {
-            up: true,
-            reason: "Manually set to up"
-        };
-    }
+    const manualStatus = link.status ?? site.status;
 
-    if (link.status === "down") {
+    if (manualStatus === "up" || manualStatus === "down") {
         return {
-            up: false,
-            reason: "Manually set to down"
-        };
-    }
-
-    if (site.status === "up") {
-        return {
-            up: true,
-            reason: "Manually set to up"
-        };
-    }
-
-    if (site.status === "down") {
-        return {
-            up: false,
-            reason: "Manually set to down"
+            up: manualStatus === "up",
+            reason: "Manually set"
         };
     }
 
     const keywords = [
+        "suspended",
         "this deployment is temporarily paused",
-        "deployment is temporarily paused",
         "application error",
         "internal server error",
         "bad gateway",
         "service unavailable",
         "site not found",
-        "page not found",
         "deployment not found",
         "project not found"
-
     ];
 
-    try {
-        const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 10000);
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 10000);
 
+    try {
         const response = await fetch(link.url, {
             method: "GET",
             cache: "no-store",
             signal: controller.signal
         });
-
-        clearTimeout(timeout);
-
-        const text = await response.text();
-        const content = text.toLowerCase();
-
-        const matchedKeyword = keywords.find(keyword =>
-            content.includes(keyword.toLowerCase())
-        );
 
         if (!response.ok) {
             return {
@@ -125,25 +102,44 @@ async function checkSite(link, site) {
             };
         }
 
-        if (matchedKeyword) {
-            return {
-                up: false,
-                reason: matchedKeyword
-            };
-        }
+        const content = (await response.text()).toLowerCase();
+
+        const matchedKeyword = keywords.find(keyword =>
+            content.includes(keyword)
+        );
 
         return {
-            up: true,
-            reason: null
+            up: !matchedKeyword,
+            reason: matchedKeyword || null
         };
 
     } catch (error) {
-        return {
-            up: false,
-            reason: error.name === "AbortError"
-                ? "Timeout"
-                : "Connection failed"
-        };
+        if (error.name === "AbortError") {
+            return {
+                up: false,
+                reason: "Timeout"
+            };
+        }
+
+        try {
+            await fetch(link.url, {
+                mode: "no-cors",
+                cache: "no-store",
+                signal: controller.signal
+            });
+
+            return {
+                up: null,
+                reason: "Status unknown (CORS restricted)"
+            };
+        } catch {
+            return {
+                up: null,
+                reason: "Could not verify status"
+            };
+        }
+    } finally {
+        clearTimeout(timeout);
     }
 }
 
